@@ -3,10 +3,6 @@ pipeline {
         label 'label_1'
     }
 
-    tools {
-        go '1.19'
-    }
-
     stages {
         stage('Pull') {
             steps {
@@ -19,6 +15,8 @@ pipeline {
                 stage('Build Manager') {
                     steps {
                         sh """
+                            export GOPATH=\$HOME/go
+                            export PATH=\$PATH:/usr/local/go/bin
                             go build -o taget/manager multi-node/manager
                         """   
                     }
@@ -27,6 +25,8 @@ pipeline {
                 stage('Build Worker') {
                     steps {
                         sh """
+                            export GOPATH=\$HOME/go
+                            export PATH=\$PATH:/usr/local/go/bin
                             go build -o taget/worker multi-node/worker
                         """   
                     }
