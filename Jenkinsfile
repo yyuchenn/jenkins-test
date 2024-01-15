@@ -11,9 +11,8 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh """  
-                    export GOPATH=/usr/local/go
-                    export PATH=\$PATH:\$GOPATH/bin
+                sh """
+                    export PATH=\$PATH:/usr/local/go/bin
                     go build -o taget/manager manager  
                 """   
             }
