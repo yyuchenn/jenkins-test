@@ -14,7 +14,7 @@ pipeline {
                     pwd
                     export GOPATH=\$HOME/go
                     export PATH=\$PATH:/usr/local/go/bin
-                    go build -o taget/manager manager  
+                    go build -o taget/manager multi-node/manager
                 """   
             }
         }
