@@ -37,12 +37,20 @@ pipeline {
         stage('Run') {
             parallel {
                 stage('Run Manager') {
+                    agent {
+                        label 'label_1'
+                    }
+
                     steps {
                         sh './target/manager :80 :1234 1 :1235 2 :1236'
                     }
                 }
                 
                 stage('Run Worker 1') {
+                    agent {
+                        label 'label_1'
+                    }
+
                     steps {
                         sleep(time:2,unit:"SECONDS")
                         sh './target/worker 1 :1234 :1235'
@@ -50,6 +58,10 @@ pipeline {
                 }
 
                 stage('Run Worker 2') {
+                    agent {
+                        label 'label_1'
+                    }
+                    
                     steps {
                         sleep(time:2,unit:"SECONDS")
                         sh './target/worker 2 :1234 :1236'
