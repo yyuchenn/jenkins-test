@@ -17,7 +17,7 @@ pipeline {
                         sh """
                             export GOPATH=\$HOME/go
                             export PATH=\$PATH:/usr/local/go/bin
-                            go build -o taget/manager multi-node/manager
+                            go build -o ./taget/manager multi-node/manager
                         """   
                     }
                 }
@@ -27,7 +27,7 @@ pipeline {
                         sh """
                             export GOPATH=\$HOME/go
                             export PATH=\$PATH:/usr/local/go/bin
-                            go build -o taget/worker multi-node/worker
+                            go build -o ./taget/worker multi-node/worker
                         """   
                     }
                 }
@@ -38,21 +38,21 @@ pipeline {
             parallel {
                 stage('Run Manager') {
                     steps {
-                        sh 'target/manager :80 :1234 1 :1235 2 :1236'
+                        sh './target/manager :80 :1234 1 :1235 2 :1236'
                     }
                 }
                 
                 stage('Run Worker 1') {
                     steps {
                         sleep(time:2,unit:"SECONDS")
-                        sh 'target/worker 1 :1234 :1235'
+                        sh './target/worker 1 :1234 :1235'
                     }
                 }
 
                 stage('Run Worker 2') {
                     steps {
                         sleep(time:2,unit:"SECONDS")
-                        sh 'target/worker 2 :1234 :1236'
+                        sh './target/worker 2 :1234 :1236'
                     }
                 }
             }
