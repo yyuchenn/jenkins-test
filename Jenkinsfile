@@ -17,7 +17,7 @@ pipeline {
                         sh """
                             export GOPATH=\$HOME/go
                             export PATH=\$PATH:/usr/local/go/bin
-                            go build -o ./taget/manager multi-node/manager
+                            go build -o ./target/manager multi-node/manager
                         """   
                     }
                 }
@@ -27,7 +27,7 @@ pipeline {
                         sh """
                             export GOPATH=\$HOME/go
                             export PATH=\$PATH:/usr/local/go/bin
-                            go build -o ./taget/worker multi-node/worker
+                            go build -o ./target/worker multi-node/worker
                         """   
                     }
                 }
